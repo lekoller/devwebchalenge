@@ -9,7 +9,7 @@ Usando Node. (Utilize o framework de sua preferência).
 - Crie uma rota de "cadastre-se", que recebe "e-mail" e "senha", que valide se o e-mail está no formato correto e cadastre o usuário em banco de dados. 
 - Crie uma rota de "login", que receberá "e-mail" e "senha" e retorne true se ambos estiverem salvos em banco de dados.
 - Crie uma rota que liste todos os usuários cadastrados no banco de dados.
-- Crie uma rota que altere a senha do usuário cadastrado. 
+- Crie uma rota que receba o "ID" do usuário, a senha atual do mesmo e a nova senha e altere a senha de um usuário cadastrado. 
 - Crei uma rota que recebe o "ID" do usuário do banco de dados e retorne o e-mail deste usuário. 
 
 Documente as rotas no arquivo README do seu repositório do Git que será enviado para nós, para que possamos testar. 
