@@ -1,18 +1,19 @@
 # Descrição do projeto:
 
-- Crie uma pagina de "login" com PHP, com Zend Framework. 
-- Crie uma pagina de "cadastre-se", que valida apenas se o e-mail está no formato correto e cadastra usuários em banco de dados, com PHP e Zend Framework. 
-- O usuário precisa conter e-mail e senha.
-- As páginas precisam estar funcionais, com verificação no banco de dados se o usuário existe, se a senha e acesso estão corretos.
-- Ao acessar o login deve direcionar para uma página inicial, com o e-mail do usuário logado em destaque.
-- Crie um serviço em Node.js com apenas uma rota e uma tela que liste todos os usuários cadastrados no banco de dados.
-- Utilize banco de dados PostGres.
+Usando Node.js e PostgreSQL
 
-As referências para a tela de login podem ser visualizadas neste repositório na pasta: 
-devwebchallenge/project-images/
+Usando PostgreSQL.
+- Crie um database com uma tabela de "usuários" que contenha os campos "id(primary)", "e-mail" e "senha". 
 
-Não há necessidade do projeto estar igual as imagens, é apenas uma referência do que é esperado. 
+Usando Node. (Utilize o framework de sua preferência).
+- Crie uma rota de "cadastre-se", que recebe "e-mail" e "senha", que valide se o e-mail está no formato correto e cadastre o usuário em banco de dados. 
+- Crie uma rota de "login", que receberá "e-mail" e "senha" e retorne true se ambos estiverem salvos em banco de dados.
+- Crie uma rota que liste todos os usuários cadastrados no banco de dados.
+- Crie uma rota que altere a senha do usuário cadastrado. 
+- Crei uma rota que recebe o "ID" do usuário do banco de dados e retorne o e-mail deste usuário. 
 
+Documente as rotas no arquivo README do seu repositório do Git que será enviado para nós, para que possamos testar. 
+Encaminhe o arquivo de bakcup do database para que possamos replicá-lo localmente.
 
 ## O que nós vamos avaliar
 
