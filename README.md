@@ -1,4 +1,4 @@
-# Brasilfone dev-web challenge-js
+# Brasilfone dev-web challenge
 
 Esse é um desafio para o cargo de desenvolvedor web na Brasilfone.
 
