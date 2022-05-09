@@ -29,6 +29,5 @@ Usando PostgreSQL.
 - Nossa stack atual é: NestJS e NextJS com React e banco de dados PostgreSQL.
 - Não se esqueça de documentar o processo necessário para rodar a sua solução.
 
-Todas as etapas acima devem ser enviadas em um único e-mail para: edian@brasilfone.com.br
 
 Qualquer dúdiva que surgir com relação ao desafio, estaremos a disposição para sanar. 
