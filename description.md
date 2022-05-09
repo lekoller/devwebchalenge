@@ -2,6 +2,9 @@
 
 Usando Node.js e PostgreSQL
 
+Link do projeto visual no figma:
+https://www.figma.com/file/8JiwAgSqTMGx82srunztqR/Front-end%3A-Teste-login?node-id=1042%3A370
+
 Usando PostgreSQL.
 - Crie um database com uma tabela de "usuários" que contenha os campos de cadastro confome projeto em anexo.
 
