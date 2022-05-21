@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { Account } from './entities/account.entity';
-import { passwordAssistant } from './bcrypt';
+import { passwordAssistant } from '../bcrypt';
 
 @Injectable()
 export class AccountsService {
@@ -32,6 +32,22 @@ export class AccountsService {
 
   findOne(id: number) {
     return this.repository.findOne(id);
+  }
+
+  findByEmail(email: string) {
+    return this.repository.findOne({ email });
+  }
+
+  findByPhone(phone: string) {
+    return this.repository.findOne({ phone });
+  }
+
+  findByEmailOrPhone(user: string) {
+    if (/^\d+$/.test(user)) {
+      return this.findByPhone(user);
+    }
+
+    return this.findByEmail(user);
   }
 
   update(id: number, updateAccountDto: UpdateAccountDto) {

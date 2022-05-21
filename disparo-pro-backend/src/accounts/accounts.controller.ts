@@ -10,6 +10,7 @@ import {
 import { AccountsService } from './accounts.service';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { Account } from './entities/account.entity';
 
 @Controller('accounts')
 export class AccountsController {
@@ -26,8 +27,20 @@ export class AccountsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findById(@Param('id') id: string) {
     return this.accountsService.findOne(+id);
+  }
+
+  @Get('user/:user')
+  async findUser(@Param('user') user: string) {
+    const account: Account = await this.accountsService.findByEmailOrPhone(
+      user,
+    );
+
+    return {
+      ...account,
+      password: undefined,
+    };
   }
 
   @Patch(':id')
