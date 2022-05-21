@@ -5,22 +5,24 @@ import { Repository } from 'typeorm';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { Account } from './entities/account.entity';
+import { passwordAssistant } from './bcrypt';
 
 @Injectable()
 export class AccountsService {
   @InjectRepository(Account)
   private readonly repository: Repository<Account>;
 
-  create(body: CreateAccountDto) {
+  async create(body: CreateAccountDto) {
     const user: Account = new Account();
 
     user.name = body.name;
     user.email = body.email;
     user.phone = body.phone;
-    user.password = body.password;
     user.marketing = body.marketing;
+    user.password = await passwordAssistant.hash(body.password);
 
-    return this.repository.save(user);
+    const created: Account = await this.repository.save(user);
+    return { ...created, password: undefined };
   }
 
   async findAll() {
