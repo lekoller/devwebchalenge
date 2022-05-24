@@ -6,18 +6,20 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 
 import styles from "../styles/LoginForm.module.css";
-import { LoginState } from "../interfaces";
+import { RegisterState } from "../interfaces";
 
 interface Props {
-  values: LoginState;
-  setValues: React.Dispatch<React.SetStateAction<LoginState>>;
+    values: RegisterState, 
+    setValues: React.Dispatch<React.SetStateAction<RegisterState>>
 }
 
 const LoginForm = (props: Props) => {
   const handleChange =
-    (prop: keyof LoginState) => (event: ChangeEvent<HTMLInputElement>) => {
+    (prop: keyof RegisterState) => (event: ChangeEvent<HTMLInputElement>) => {
       props.setValues({ ...props.values, [prop]: event.target.value });
     };
 
@@ -35,13 +37,13 @@ const LoginForm = (props: Props) => {
   return (
     <div className={styles.container}>
       <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined">
-        <InputLabel>E-mail ou Celular</InputLabel>
+        <InputLabel>Nome</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
           type="text"
-          value={props.values.user}
-          onChange={handleChange("user")}
-          label="E-mail ou Celular"
+          value={props.values.name}
+          onChange={handleChange("name")}
+          label="Nome"
           style={{ paddingLeft: "12px", paddingRight: "12px" }}
         />
       </FormControl>
