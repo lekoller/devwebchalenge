@@ -37,7 +37,7 @@ const LoginForm = (props: Props) => {
       <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined">
         <InputLabel>E-mail ou Celular</InputLabel>
         <OutlinedInput
-          id="outlined-adornment-password"
+          id="outlined-user"
           type="text"
           value={props.values.user}
           onChange={handleChange("user")}

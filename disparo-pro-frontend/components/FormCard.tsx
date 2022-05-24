@@ -16,7 +16,6 @@ const LoginCard = () => {
     password: "",
     showPassword: false,
   });
-
   const [registerValues, setRegisterValues] = useState<RegisterState>({
     name: "",
     email: "",
@@ -28,6 +27,32 @@ const LoginCard = () => {
     acceptTerms: false,
     marketing: null,
   });
+  const [marketingValue, setMarketingValue] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [policyError, setPolicyError] = useState(false);
+  const [marketingError, setMarketingError] = useState(false);
+  const [policyHelperText, setPolicyHelperText] = useState("");
+  const [marketingHelperText, setMarketingHelperText] = useState("");
+
+  const handleRegisterSubmit = () => {
+    if (!marketingValue) {
+      setMarketingHelperText("É necessário escolher a resposta");
+      setMarketingError(true);
+      return
+    }
+
+    console.log(registerValues);
+    if (!acceptedTerms) {
+      setPolicyHelperText("É necessário aceitar os termos");
+      setPolicyError(true);
+      return;
+    }
+
+    setPolicyError(false);
+    setMarketingError(false);
+    setPolicyHelperText("");
+    setMarketingHelperText("");
+  };
 
   return (
     <Paper className={styles.container} elevation={3}>
@@ -39,7 +64,22 @@ const LoginCard = () => {
         {displayRegister ? "Cadastre-se" : "Login"}
       </Typography>
       {displayRegister ? (
-        <RegisterForm values={registerValues} setValues={setRegisterValues} />
+        <RegisterForm
+          values={registerValues}
+          setValues={setRegisterValues}
+          marketingValue={marketingValue}
+          setMarketingValue={setMarketingValue}
+          acceptedTerms={acceptedTerms}
+          setAcceptedTerms={setAcceptedTerms}
+          policyError={policyError}
+          setPolicyError={setPolicyError}
+          marketingError={marketingError}
+          setMarketingError={setMarketingError}
+          policyHelperText={policyHelperText}
+          marketingHelperText={marketingHelperText}
+          setPolicyHelperText={setPolicyHelperText}
+          setMarketingHelperText={setMarketingHelperText}
+        />
       ) : (
         <LoginForm values={loginValues} setValues={setLoginValues} />
       )}
@@ -50,12 +90,13 @@ const LoginCard = () => {
           fontSize: 16,
           fontWeight: "bold",
           background:
-            "linear-gradient(156.07deg, rgba(58, 163, 245, 0.86) -10.81%, #123D68",
+            "linear-gradient(156.07deg, rgba(58, 163, 245, 0.86) -10.81%, #123D68)",
           width: "240px",
           height: "50px",
           margin: "16px",
         }}
         variant="contained"
+        onClick={handleRegisterSubmit}
       >
         {displayRegister ? "Cadastrar" : "Conectar"}
       </Button>
@@ -65,7 +106,9 @@ const LoginCard = () => {
         color={"#000"}
         onClick={() => setDisplayRegister(displayRegister ? false : true)}
       >
-        {displayRegister ? "Já é cliente Disparo Pro?" : "Ainda não é cliente Disparo Pro?"}
+        {displayRegister
+          ? "Já é cliente Disparo Pro?"
+          : "Ainda não é cliente Disparo Pro?"}
       </Link>
       <Button
         size="medium"
