@@ -4,7 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 
 import styles from "../styles/Home.module.css";
-import Login from "./Login";
+import FormCard from "../components/FormCard"
 import illustration from "../assets/illustration.svg";
 import logo from "../assets/logo.svg"
 
@@ -32,7 +32,7 @@ const Home: NextPage = () => {
       </div>
 
       <main className={styles.main}>
-        <Login />
+        <FormCard />
       </main>
     </div>
   );
