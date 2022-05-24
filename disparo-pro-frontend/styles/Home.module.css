@@ -1,5 +1,23 @@
 .container {
-  padding: 0 2rem;
+  padding: 0;
+  display: flex;
+}
+
+.panel {
+  width: 50%;
+  min-height: 100vh;
+  background: linear-gradient(156.07deg, rgba(58, 163, 245, 0.86) -10.81%, #123D68 84.63%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 80px;
+}
+
+.logo {
+  position: relative;
+  width: max-content;
+  padding-left: 2.5vw;
+  padding-top: 2vh;
 }
 
 .main {

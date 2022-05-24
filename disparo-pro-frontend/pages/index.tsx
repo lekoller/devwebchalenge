@@ -1,10 +1,16 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Login from './Login'
+import type { NextPage } from "next";
+import { useEffect, useState } from "react";
+import Head from "next/head";
+import Image from "next/image";
+
+import styles from "../styles/Home.module.css";
+import Login from "./Login";
+import illustration from "../assets/illustration.svg";
+import logo from "../assets/logo.svg"
 
 const Home: NextPage = () => {
+  const size = useWindowSize();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,11 +19,50 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div className={styles.panel}>
+        <div className={styles.logo}>
+          <Image src={logo} alt="logo" width={297} height={84} />
+        </div>
+        <Image
+          src={illustration}
+          alt="illustration"
+          width={size.width * 0.315625}
+          height={size.height * 0.7695}
+        />
+      </div>
+
       <main className={styles.main}>
         <Login />
       </main>
     </div>
-  )
+  );
+};
+
+// Hook
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
 }
 
-export default Home
+export default Home;
