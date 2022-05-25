@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosError } from "axios";
 
-export { AxiosError }
+export { AxiosError };
 
 export class HTTPBaseService {
   protected instance: AxiosInstance;
@@ -21,6 +21,26 @@ export class HTTPBaseService {
         user,
         password,
       },
-    })
+    });
+  }
+
+  create(
+    name: string,
+    email: string,
+    password: string,
+    phone: string,
+    marketing: boolean
+  ) {
+    return this.instance({
+      method: "post",
+      url: "accounts/",
+      data: {
+        name,
+        email,
+        password,
+        phone,
+        marketing,
+      },
+    });
   }
 }

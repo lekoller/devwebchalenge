@@ -47,6 +47,8 @@ const LoginCard = () => {
   const [nameSizeHelperText, setNameSizeHelperText] = useState("");
   const [token, setToken] = useState("");
   const [loginFailed, setLoginFailed] = useState("");
+  const [registerFailed, setRegisterFailed] = useState("");
+  const [registerSucceeded, setRegisterSucceeded] = useState("");
 
   const httpService: HTTPBaseService = new HTTPBaseService(
     "http://localhost:3030/api/v1/"
@@ -66,7 +68,7 @@ const LoginCard = () => {
     }
   };
 
-  const handleRegisterSubmit = () => {
+  const handleRegisterSubmit = async () => {
     const {
       name,
       email,
@@ -163,7 +165,21 @@ const LoginCard = () => {
     setNameSizeHelperText("");
     setNameSizeError(false);
 
-    // submit
+    try {
+      const res = await httpService.create(
+        name,
+        email,
+        password,
+        phone,
+        marketing,
+      )
+
+      if (res.status === 201) {
+        setRegisterSucceeded(`Usuário ${res.data["name"]} cadastrado com sucesso!`)
+      }
+    } catch (err) {
+      setRegisterFailed(err.message)
+    }
   };
 
   return (
@@ -248,6 +264,8 @@ const LoginCard = () => {
 
       {token && <BasicAlerts type="success" message="Login realizado!" />}
       {loginFailed && <BasicAlerts type="error" message={loginFailed} />}
+      {registerSucceeded && <BasicAlerts type="success" message={registerSucceeded} />}
+      {registerFailed && <BasicAlerts type="error" message={registerFailed} />}
     </Paper>
   );
 };
