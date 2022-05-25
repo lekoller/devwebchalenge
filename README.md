@@ -12,7 +12,7 @@ Seguindo na mesma linha, fora optado pelo NestJS, e pode ser ligado navegando pa
 
 ```
 http://localhost:3030/api/v1/accounts -> POST: Cria uma conta de usuário.
-http://localhost:3000/api/v1/auth/login/ -> POST: Faz Login.
+http://localhost:3030/api/v1/auth/login/ -> POST: Faz Login.
 ```
 
 - Dados para criar uma conta:
