@@ -7,4 +7,5 @@
 
 .radioOptions {
     display: flex;
+    justify-content: center;
 }

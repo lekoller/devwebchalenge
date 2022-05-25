@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, useState } from "react";
+import React, { ChangeEvent, MouseEvent } from "react";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -11,7 +11,6 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormLabel from "@mui/material/FormLabel";
-import Button from "@mui/material/Button";
 
 import styles from "../styles/LoginForm.module.css";
 import { RegisterState } from "../interfaces";
@@ -25,12 +24,22 @@ interface Props {
   setAcceptedTerms: React.Dispatch<React.SetStateAction<boolean>>;
   policyError: boolean;
   marketingError: boolean;
-  setPolicyError: React.Dispatch<React.SetStateAction<boolean>>
-  setMarketingError: React.Dispatch<React.SetStateAction<boolean>>
+  setPolicyError: React.Dispatch<React.SetStateAction<boolean>>;
+  setMarketingError: React.Dispatch<React.SetStateAction<boolean>>;
   policyHelperText: string;
   marketingHelperText: string;
   setPolicyHelperText: React.Dispatch<React.SetStateAction<string>>;
   setMarketingHelperText: React.Dispatch<React.SetStateAction<string>>;
+  passwordError: boolean;
+  passwordHelperText: string;
+  passwordSizeError: boolean;
+  passwordSizeHelperText: string;
+  phoneSizeError: boolean;
+  phoneSizeHelperText: string;
+  emailSizeError: boolean;
+  emailSizeHelperText: string;
+  nameSizeError: boolean;
+  nameSizeHelperText: string;
 }
 
 const RegisterForm = (props: Props) => {
@@ -50,12 +59,30 @@ const RegisterForm = (props: Props) => {
     event.preventDefault();
   };
 
-  const [marketingValue, setMarketingValue] = [props.marketingValue, props.setMarketingValue];
-  const [acceptedTerms, setAcceptedTerms] = [props.acceptedTerms, props.setAcceptedTerms];
-  const [policyError, setPolicyError] = [props.policyError, props.setPolicyError];
-  const [marketingError, setMarketingError] = [props.marketingError, props.setMarketingError];
-  const [policyHelperText, setPolicyHelperText] = [props.policyHelperText, props.setPolicyHelperText];
-  const [marketingHelperText, setMarketingHelperText] = [props.marketingHelperText, props.setMarketingHelperText];
+  const [marketingValue, setMarketingValue] = [
+    props.marketingValue,
+    props.setMarketingValue,
+  ];
+  const [acceptedTerms, setAcceptedTerms] = [
+    props.acceptedTerms,
+    props.setAcceptedTerms,
+  ];
+  const [policyError, setPolicyError] = [
+    props.policyError,
+    props.setPolicyError,
+  ];
+  const [marketingError, setMarketingError] = [
+    props.marketingError,
+    props.setMarketingError,
+  ];
+  const [policyHelperText, setPolicyHelperText] = [
+    props.policyHelperText,
+    props.setPolicyHelperText,
+  ];
+  const [marketingHelperText, setMarketingHelperText] = [
+    props.marketingHelperText,
+    props.setMarketingHelperText,
+  ];
 
   const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = (event.target as HTMLInputElement).value;
@@ -80,7 +107,7 @@ const RegisterForm = (props: Props) => {
 
   return (
     <div className={styles.container}>
-      <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined">
+      <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined" error={props.nameSizeError}>
         <InputLabel>Nome</InputLabel>
         <OutlinedInput
           type="text"
@@ -89,9 +116,10 @@ const RegisterForm = (props: Props) => {
           label="Nome"
           style={{ paddingLeft: "12px", paddingRight: "12px" }}
         />
+        <FormHelperText>{props.nameSizeHelperText}</FormHelperText>
       </FormControl>
 
-      <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined">
+      <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined" error={props.emailSizeError}>
         <InputLabel>E-mail</InputLabel>
         <OutlinedInput
           type="text"
@@ -100,9 +128,10 @@ const RegisterForm = (props: Props) => {
           label="E-mail"
           style={{ paddingLeft: "12px", paddingRight: "12px" }}
         />
+        <FormHelperText>{props.emailSizeHelperText}</FormHelperText>
       </FormControl>
 
-      <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined">
+      <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined" error={props.phoneSizeError}>
         <InputLabel>Número</InputLabel>
         <OutlinedInput
           type="number"
@@ -111,9 +140,10 @@ const RegisterForm = (props: Props) => {
           label="Número"
           style={{ paddingLeft: "12px", paddingRight: "12px" }}
         />
+        <FormHelperText>{props.phoneSizeHelperText}</FormHelperText>
       </FormControl>
 
-      <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined">
+      <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined" error={props.passwordSizeError}>
         <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password"
@@ -135,9 +165,14 @@ const RegisterForm = (props: Props) => {
           label="Senha"
           style={{ paddingLeft: "12px", paddingRight: "12px" }}
         />
+        <FormHelperText>{props.passwordSizeHelperText}</FormHelperText>
       </FormControl>
 
-      <FormControl sx={{ m: 1, width: "50ch" }} variant="outlined">
+      <FormControl
+        sx={{ m: 1, width: "50ch" }}
+        error={props.passwordError}
+        variant="outlined"
+      >
         <InputLabel htmlFor="outlined-adornment-retype-password">
           Repetir senha
         </InputLabel>
@@ -161,6 +196,7 @@ const RegisterForm = (props: Props) => {
           label="Repetir senha"
           style={{ paddingLeft: "12px", paddingRight: "12px" }}
         />
+        <FormHelperText>{props.passwordHelperText}</FormHelperText>
       </FormControl>
 
       <FormControl sx={{ m: 4 }} error={policyError} variant="standard">
@@ -196,6 +232,8 @@ const RegisterForm = (props: Props) => {
         </RadioGroup>
         <FormHelperText>{marketingHelperText}</FormHelperText>
       </FormControl>
+
+      
     </div>
   );
 };
